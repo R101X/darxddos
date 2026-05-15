@@ -6,5 +6,13 @@
     "role": "admin",
     "createdAt": "2026-05-15T17:02:29.104Z",
     "lastLogin": null
+  },
+  {
+    "id": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx",
+    "passwordHash": "$2b$12$uXtrxakaNzQGvUFUgG3lye1o19jDaAXswB0bTgkxvogGoUrOt2TyS",
+    "role": "user",
+    "createdAt": "2026-05-15T17:10:35.108Z",
+    "lastLogin": null
   }
 ]

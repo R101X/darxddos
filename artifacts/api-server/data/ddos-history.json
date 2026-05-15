@@ -1,0 +1,17 @@
+[
+  {
+    "id": "55ea7ad1-d45a-4e66-ba24-ccd08092ff3c",
+    "target": "https://chat.z.ai/",
+    "mode": "http_flood",
+    "bots": 766,
+    "rps": 2201,
+    "duration": 120,
+    "startedAt": "2026-05-15T17:11:28.224Z",
+    "stoppedAt": "2026-05-15T17:13:28.319Z",
+    "totalPackets": 261516,
+    "totalRequests": 78345,
+    "peakBandwidth": 1.3181682872196043,
+    "successRate": 97.62765767466854,
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef"
+  }
+]

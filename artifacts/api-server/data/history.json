@@ -1,0 +1,68 @@
+[
+  {
+    "id": "e9c7d81b-bef4-4eb9-8ce7-788093e178b1",
+    "tool": "Website Status",
+    "input": {
+      "url": "https://chat.z.ai/"
+    },
+    "result": {
+      "url": "https://chat.z.ai/",
+      "online": true,
+      "statusCode": 200,
+      "statusText": "OK",
+      "responseTime": 583,
+      "ssl": true,
+      "sslExpiry": null,
+      "redirects": 0,
+      "finalUrl": "https://chat.z.ai/"
+    },
+    "createdAt": "2026-05-15T17:13:54.947Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx"
+  },
+  {
+    "id": "ee9d98ad-a833-41e4-a74f-8b99e8efe68e",
+    "tool": "Ping",
+    "input": {
+      "host": "1.2.3.2.1",
+      "count": 10
+    },
+    "result": {
+      "host": "1.2.3.2.1",
+      "alive": false,
+      "min": null,
+      "max": null,
+      "avg": null,
+      "times": [],
+      "packetLoss": 100
+    },
+    "createdAt": "2026-05-15T17:13:45.626Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx"
+  },
+  {
+    "id": "786772d6-4f6b-438e-97b7-c9986e362f5b",
+    "tool": "IP Lookup",
+    "input": {
+      "ip": "3.3.3.3"
+    },
+    "result": {
+      "ip": "3.3.3.3",
+      "country": "United States",
+      "countryCode": "US",
+      "region": "Virginia",
+      "city": "Ashburn",
+      "isp": "Amazon.com, Inc.",
+      "org": "Amazon Technologies Inc",
+      "as": "AS14618 Amazon.com, Inc.",
+      "lat": 39.0469,
+      "lon": -77.4903,
+      "timezone": "America/New_York",
+      "proxy": true,
+      "hosting": true
+    },
+    "createdAt": "2026-05-15T17:13:08.242Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx"
+  }
+]

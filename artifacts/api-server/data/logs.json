@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bfe4920d-e290-4891-b13c-472156206233",
+    "level": "info",
+    "message": "Website Status: https://chat.z.ai/ -> 200",
+    "createdAt": "2026-05-15T17:13:54.947Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx",
+    "meta": {}
+  },
+  {
+    "id": "2b8e9212-3232-49a9-b682-bfe79957a863",
+    "level": "info",
+    "message": "IP Lookup: 3.3.3.3",
+    "createdAt": "2026-05-15T17:13:08.242Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx",
+    "meta": {}
+  },
+  {
+    "id": "03eb79c8-9ab7-47cd-aeb4-da66bab4abad",
+    "level": "warn",
+    "message": "DDoS Simulation started: http_flood -> https://chat.z.ai/ (766 bots, 2201 rps)",
+    "createdAt": "2026-05-15T17:11:28.224Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx",
+    "meta": {}
+  },
+  {
+    "id": "e8430269-f025-4882-8471-dc3f59de3977",
+    "level": "success",
+    "message": "New user registered: darx (user)",
+    "createdAt": "2026-05-15T17:10:35.109Z",
+    "userId": "2bf8229d-7b24-4f97-a755-6f962aad69ef",
+    "username": "darx",
+    "meta": {}
+  }
+]

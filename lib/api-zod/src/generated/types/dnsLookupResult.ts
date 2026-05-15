@@ -5,7 +5,9 @@
  * DarXddos Cybersecurity Platform API
  * OpenAPI spec version: 0.1.0
  */
+import type { DnsRecord } from './dnsRecord';
 
-export interface HealthStatus {
-  status: string;
+export interface DnsLookupResult {
+  domain: string;
+  records: DnsRecord[];
 }

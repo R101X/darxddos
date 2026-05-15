@@ -5,7 +5,9 @@
  * DarXddos Cybersecurity Platform API
  * OpenAPI spec version: 0.1.0
  */
+import type { User } from './user';
 
-export interface HealthStatus {
-  status: string;
+export interface AuthResponse {
+  user: User;
+  token: string;
 }

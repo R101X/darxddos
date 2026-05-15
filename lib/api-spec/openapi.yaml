@@ -3,20 +3,33 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: DarXddos Cybersecurity Platform API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: auth
+    description: Authentication operations
+  - name: tools
+    description: Cybersecurity tools
+  - name: history
+    description: Activity history
+  - name: logs
+    description: Live logs
+  - name: admin
+    description: Admin panel
+  - name: ddos
+    description: DDoS simulator
+  - name: network
+    description: Network monitoring
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +37,952 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /auth/register:
+    post:
+      operationId: register
+      tags: [auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthInput"
+      responses:
+        "201":
+          description: Registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/login:
+    post:
+      operationId: login
+      tags: [auth]
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthInput"
+      responses:
+        "200":
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/logout:
+    post:
+      operationId: logout
+      tags: [auth]
+      summary: Logout
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current user
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/ip-lookup:
+    post:
+      operationId: ipLookup
+      tags: [tools]
+      summary: IP address lookup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IpLookupInput"
+      responses:
+        "200":
+          description: IP info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IpLookupResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/dns-lookup:
+    post:
+      operationId: dnsLookup
+      tags: [tools]
+      summary: DNS lookup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DnsLookupInput"
+      responses:
+        "200":
+          description: DNS records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DnsLookupResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/whois:
+    post:
+      operationId: whoisCheck
+      tags: [tools]
+      summary: WHOIS checker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WhoisInput"
+      responses:
+        "200":
+          description: WHOIS data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WhoisResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/ping:
+    post:
+      operationId: pingCheck
+      tags: [tools]
+      summary: Ping checker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PingInput"
+      responses:
+        "200":
+          description: Ping result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/website-status:
+    post:
+      operationId: websiteStatus
+      tags: [tools]
+      summary: Website status checker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UrlInput"
+      responses:
+        "200":
+          description: Website status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebsiteStatusResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/http-headers:
+    post:
+      operationId: httpHeaders
+      tags: [tools]
+      summary: HTTP header analyzer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UrlInput"
+      responses:
+        "200":
+          description: HTTP headers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpHeadersResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/api-test:
+    post:
+      operationId: apiTest
+      tags: [tools]
+      summary: API tester
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiTestInput"
+      responses:
+        "200":
+          description: API test result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiTestResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /tools/port-scan:
+    post:
+      operationId: portScan
+      tags: [tools]
+      summary: Port scanner (localhost only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortScanInput"
+      responses:
+        "200":
+          description: Port scan result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortScanResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /history:
+    get:
+      operationId: getHistory
+      tags: [history]
+      summary: Get activity history
+      responses:
+        "200":
+          description: History list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HistoryEntry"
+
+  /history/export:
+    get:
+      operationId: exportHistory
+      tags: [history]
+      summary: Export history as JSON
+      responses:
+        "200":
+          description: Exported history
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExportData"
+
+  /history/{id}:
+    delete:
+      operationId: deleteHistory
+      tags: [history]
+      summary: Delete history entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /logs:
+    get:
+      operationId: getLogs
+      tags: [logs]
+      summary: Get recent activity logs
+      responses:
+        "200":
+          description: Logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LogEntry"
+
+  /admin/users:
+    get:
+      operationId: getAdminUsers
+      tags: [admin]
+      summary: Get all users (admin only)
+      responses:
+        "200":
+          description: Users list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/users/{id}:
+    delete:
+      operationId: deleteAdminUser
+      tags: [admin]
+      summary: Delete user (admin only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/stats:
+    get:
+      operationId: getAdminStats
+      tags: [admin]
+      summary: Get admin statistics
+      responses:
+        "200":
+          description: Admin stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStats"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /ddos/start:
+    post:
+      operationId: ddosStart
+      tags: [ddos]
+      summary: Start DDoS simulation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DdosSimInput"
+      responses:
+        "200":
+          description: Simulation started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DdosSimStatus"
+
+  /ddos/stop:
+    post:
+      operationId: ddosStop
+      tags: [ddos]
+      summary: Stop DDoS simulation
+      responses:
+        "200":
+          description: Simulation stopped
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DdosSimStatus"
+
+  /ddos/history:
+    get:
+      operationId: getDdosHistory
+      tags: [ddos]
+      summary: Get DDoS simulation history
+      responses:
+        "200":
+          description: DDoS history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DdosHistoryEntry"
+
+  /network/stats:
+    get:
+      operationId: getNetworkStats
+      tags: [network]
+      summary: Get realtime network/server stats
+      responses:
+        "200":
+          description: Network stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NetworkStats"
+
 components:
   schemas:
     HealthStatus:
       type: object
+      required: [status]
       properties:
         status:
           type: string
-      required:
-        - status
 
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+
+    SuccessResponse:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+
+    AuthInput:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          minLength: 3
+        password:
+          type: string
+          minLength: 6
+
+    AuthResponse:
+      type: object
+      required: [user, token]
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        token:
+          type: string
+
+    User:
+      type: object
+      required: [id, username, role, createdAt]
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        role:
+          type: string
+          enum: [admin, user]
+        createdAt:
+          type: string
+        lastLogin:
+          type: ["string", "null"]
+
+    IpLookupInput:
+      type: object
+      required: [ip]
+      properties:
+        ip:
+          type: string
+
+    IpLookupResult:
+      type: object
+      required: [ip]
+      properties:
+        ip:
+          type: string
+        country:
+          type: ["string", "null"]
+        countryCode:
+          type: ["string", "null"]
+        region:
+          type: ["string", "null"]
+        city:
+          type: ["string", "null"]
+        isp:
+          type: ["string", "null"]
+        org:
+          type: ["string", "null"]
+        as:
+          type: ["string", "null"]
+        lat:
+          type: ["number", "null"]
+        lon:
+          type: ["number", "null"]
+        timezone:
+          type: ["string", "null"]
+        proxy:
+          type: ["boolean", "null"]
+        hosting:
+          type: ["boolean", "null"]
+
+    DnsLookupInput:
+      type: object
+      required: [domain]
+      properties:
+        domain:
+          type: string
+        type:
+          type: string
+
+    DnsRecord:
+      type: object
+      required: [type, value]
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+        ttl:
+          type: ["integer", "null"]
+        priority:
+          type: ["integer", "null"]
+
+    DnsLookupResult:
+      type: object
+      required: [domain, records]
+      properties:
+        domain:
+          type: string
+        records:
+          type: array
+          items:
+            $ref: "#/components/schemas/DnsRecord"
+
+    WhoisInput:
+      type: object
+      required: [domain]
+      properties:
+        domain:
+          type: string
+
+    WhoisResult:
+      type: object
+      required: [domain, raw]
+      properties:
+        domain:
+          type: string
+        registrar:
+          type: ["string", "null"]
+        createdDate:
+          type: ["string", "null"]
+        updatedDate:
+          type: ["string", "null"]
+        expiresDate:
+          type: ["string", "null"]
+        status:
+          type: ["string", "null"]
+        nameServers:
+          type: array
+          items:
+            type: string
+        raw:
+          type: string
+
+    PingInput:
+      type: object
+      required: [host]
+      properties:
+        host:
+          type: string
+        count:
+          type: integer
+
+    PingResult:
+      type: object
+      required: [host, alive, times]
+      properties:
+        host:
+          type: string
+        alive:
+          type: boolean
+        min:
+          type: ["number", "null"]
+        max:
+          type: ["number", "null"]
+        avg:
+          type: ["number", "null"]
+        times:
+          type: array
+          items:
+            type: number
+        packetLoss:
+          type: ["number", "null"]
+
+    UrlInput:
+      type: object
+      required: [url]
+      properties:
+        url:
+          type: string
+
+    WebsiteStatusResult:
+      type: object
+      required: [url, online, statusCode, responseTime]
+      properties:
+        url:
+          type: string
+        online:
+          type: boolean
+        statusCode:
+          type: ["integer", "null"]
+        statusText:
+          type: ["string", "null"]
+        responseTime:
+          type: ["number", "null"]
+        ssl:
+          type: ["boolean", "null"]
+        sslExpiry:
+          type: ["string", "null"]
+        redirects:
+          type: integer
+        finalUrl:
+          type: ["string", "null"]
+
+    HttpHeadersResult:
+      type: object
+      required: [url, statusCode, headers]
+      properties:
+        url:
+          type: string
+        statusCode:
+          type: integer
+        statusText:
+          type: string
+        responseTime:
+          type: number
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        securityHeaders:
+          type: object
+          additionalProperties:
+            type: boolean
+
+    ApiTestInput:
+      type: object
+      required: [url, method]
+      properties:
+        url:
+          type: string
+        method:
+          type: string
+          enum: [GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS]
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        body:
+          type: ["string", "null"]
+
+    ApiTestResult:
+      type: object
+      required: [url, method, statusCode, responseTime, headers, body]
+      properties:
+        url:
+          type: string
+        method:
+          type: string
+        statusCode:
+          type: integer
+        statusText:
+          type: string
+        responseTime:
+          type: number
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        body:
+          type: string
+        size:
+          type: integer
+
+    PortScanInput:
+      type: object
+      required: [ports]
+      properties:
+        ports:
+          type: array
+          items:
+            type: integer
+
+    PortResult:
+      type: object
+      required: [port, open]
+      properties:
+        port:
+          type: integer
+        open:
+          type: boolean
+        service:
+          type: ["string", "null"]
+
+    PortScanResult:
+      type: object
+      required: [host, ports]
+      properties:
+        host:
+          type: string
+        ports:
+          type: array
+          items:
+            $ref: "#/components/schemas/PortResult"
+        scanTime:
+          type: number
+
+    HistoryEntry:
+      type: object
+      required: [id, tool, input, result, createdAt, userId]
+      properties:
+        id:
+          type: string
+        tool:
+          type: string
+        input:
+          type: object
+          additionalProperties: true
+        result:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+        userId:
+          type: string
+        username:
+          type: string
+
+    ExportData:
+      type: object
+      required: [exportedAt, entries]
+      properties:
+        exportedAt:
+          type: string
+        entries:
+          type: array
+          items:
+            $ref: "#/components/schemas/HistoryEntry"
+
+    LogEntry:
+      type: object
+      required: [id, level, message, createdAt]
+      properties:
+        id:
+          type: string
+        level:
+          type: string
+          enum: [info, warn, error, success, debug]
+        message:
+          type: string
+        createdAt:
+          type: string
+        userId:
+          type: ["string", "null"]
+        username:
+          type: ["string", "null"]
+        meta:
+          type: object
+          additionalProperties: true
+
+    AdminStats:
+      type: object
+      required: [totalUsers, totalRequests, totalHistory, activeSessions]
+      properties:
+        totalUsers:
+          type: integer
+        totalRequests:
+          type: integer
+        totalHistory:
+          type: integer
+        activeSessions:
+          type: integer
+        topTools:
+          type: array
+          items:
+            type: object
+            required: [tool, count]
+            properties:
+              tool:
+                type: string
+              count:
+                type: integer
+
+    DdosSimInput:
+      type: object
+      required: [target, mode, bots, rps, duration]
+      properties:
+        target:
+          type: string
+        mode:
+          type: string
+          enum: [layer4, layer7, syn_flood, udp_flood, http_flood]
+        bots:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        rps:
+          type: integer
+          minimum: 1
+          maximum: 10000
+        duration:
+          type: integer
+          minimum: 5
+          maximum: 300
+
+    DdosSimStatus:
+      type: object
+      required: [id, running, target, mode]
+      properties:
+        id:
+          type: string
+        running:
+          type: boolean
+        target:
+          type: string
+        mode:
+          type: string
+        startedAt:
+          type: ["string", "null"]
+        stoppedAt:
+          type: ["string", "null"]
+
+    DdosHistoryEntry:
+      type: object
+      required: [id, target, mode, bots, rps, duration, startedAt]
+      properties:
+        id:
+          type: string
+        target:
+          type: string
+        mode:
+          type: string
+        bots:
+          type: integer
+        rps:
+          type: integer
+        duration:
+          type: integer
+        startedAt:
+          type: string
+        stoppedAt:
+          type: ["string", "null"]
+        totalPackets:
+          type: integer
+        totalRequests:
+          type: integer
+        peakBandwidth:
+          type: number
+        successRate:
+          type: number
+        userId:
+          type: string
+
+    NetworkStats:
+      type: object
+      required: [uptime, requestsPerSecond, totalRequests, activeConnections, cpuUsage, memoryUsage]
+      properties:
+        uptime:
+          type: number
+        requestsPerSecond:
+          type: number
+        totalRequests:
+          type: integer
+        activeConnections:
+          type: integer
+        cpuUsage:
+          type: number
+        memoryUsage:
+          type: number
+        timestamp:
+          type: string

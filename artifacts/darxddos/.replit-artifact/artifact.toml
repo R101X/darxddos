@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "DarXddos"
+version = "1.0.0"
+id = "artifacts/darxddos"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23242
+
+[services.development]
+run = "pnpm --filter @workspace/darxddos run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/darxddos", "run", "build" ]
+publicDir = "artifacts/darxddos/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23242"
+BASE_PATH = "/"

@@ -5,7 +5,9 @@
  * DarXddos Cybersecurity Platform API
  * OpenAPI spec version: 0.1.0
  */
+import type { HistoryEntry } from './historyEntry';
 
-export interface HealthStatus {
-  status: string;
+export interface ExportData {
+  exportedAt: string;
+  entries: HistoryEntry[];
 }

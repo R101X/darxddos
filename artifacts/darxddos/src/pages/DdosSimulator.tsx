@@ -91,12 +91,12 @@ export default function DdosSimulator() {
     <div className="max-w-4xl space-y-6">
       <div>
         <h1 className="text-xl font-bold tracking-widest mb-1 glitch" style={{ fontFamily: "'Orbitron', sans-serif", color: "#ff4444" }}>DDoS SIMULATOR</h1>
-        <p style={{ color: "#666", fontFamily: "monospace", fontSize: 12 }}>Virtual attack simulation — educational use only</p>
+        <p style={{ color: "#666", fontFamily: "monospace", fontSize: 12 }}>DDoS metrics visualization</p>
       </div>
 
       <div className="p-3 rounded" style={{ background: "rgba(255,0,0,0.05)", border: "1px solid rgba(255,0,0,0.2)" }}>
         <p className="text-xs" style={{ color: "#ff6666", fontFamily: "monospace" }}>
-          🛡️ SIMULATION ONLY — No real network traffic is generated. All data is randomly computed for educational visualization. Designed to test your understanding of DDoS attack patterns.
+          🛡️ Simulation mode — metrics are simulated for visualization.
         </p>
       </div>
 
@@ -224,7 +224,7 @@ export default function DdosSimulator() {
       {/* History */}
       {history.length > 0 && (
         <div className="glass-card rounded-lg p-4">
-          <div className="text-sm font-bold mb-3 tracking-widest" style={{ color: "#ff4444", fontFamily: "monospace" }}>[SIMULATION HISTORY]</div>
+          <div className="text-sm font-bold mb-3 tracking-widest" style={{ color: "#ff4444", fontFamily: "monospace" }}>[HISTORY]</div>
           <div className="space-y-2">
             {history.slice(0, 5).map((h) => (
               <div key={h.id} className="flex items-center gap-3 text-xs py-2" style={{ borderBottom: "1px solid rgba(255,0,0,0.07)", fontFamily: "monospace" }}>

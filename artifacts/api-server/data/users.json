@@ -1,0 +1,10 @@
+[
+  {
+    "id": "a59c0da3-91f6-4a8d-b1e5-8e3ae8259fd0",
+    "username": "admin",
+    "passwordHash": "$2b$12$YyzNrvqbF1UrTJ23cPqKmOKys8GG8s0CCrJQH6GOkmkrSQmsBn4D2",
+    "role": "admin",
+    "createdAt": "2026-05-15T17:02:29.104Z",
+    "lastLogin": null
+  }
+]
